@@ -1,0 +1,45 @@
+name: main
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+      BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory # Directory where build-wrapper output will be placed
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+    - name: Cache SonarQube packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.sonar/cache
+        key: ${{ runner.os }}-sonar
+        restore-keys: ${{ runner.os }}-sonar
+    - name: Install sonar-scanner and build-wrapper
+      uses: SonarSource/sonarcloud-github-c-cpp@v2
+    - name: install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y valgrind cmake pkg-config
+    - name: Run build-wrapper
+      run: |
+        cd test
+        mkdir debug
+        cmake -DCMAKE_BUILD_TYPE=Debug -S . -B debug
+        build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} cmake --build debug/ --config Debug
+        cd debug
+        make test
+        make coverage
+    - name: Upload sonar results
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: |
+        sonar-scanner --define sonar.cfamily.build-wrapper-output="./test/${{ env.BUILD_WRAPPER_OUT_DIR }}"

@@ -1,0 +1,24 @@
+.vscode/
+
+# Ignore build and CMake files
+esp32-lora-transmitter/build/
+esp32-lora-transmitter/CMakeFiles/
+esp32-lora-transmitter/cmake-build-debug/
+esp32-lora-transmitter/.esp-idf/
+esp32-lora-transmitter/main/config.h
+esp32-lora-transmitter/pytest_hello_world.py
+
+# Ignore IDE-specific files
+esp32-lora-transmitter/.devcontainer/
+esp32-lora-transmitter/.vscode/
+esp32-lora-transmitter/.idea/
+
+# Ignore platform-specific files
+esp32-lora-transmitter/*.exe
+esp32-lora-transmitter/*.out
+esp32-lora-transmitter/*.dmg
+
+# Ignore user-specific or backup files
+esp32-lora-transmitter/*.swp
+esp32-lora-transmitter/*.bak
+esp32-lora-transmitter/*~
