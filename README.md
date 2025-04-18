@@ -37,6 +37,8 @@ This node is responsible for motion detection in the mailbox and sending the det
 - **IPEX to SMA adapter cable**  
 - **433 MHz SMA antenna (10 dBi)**  
 - **PIR Motion Sensor** (For detecting motion in the mailbox)
+- **3.7V 2600 mAh lithium battery**
+- **AMS1117 3,3V voltage converter**
 
 ---
 
