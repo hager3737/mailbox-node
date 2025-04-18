@@ -11,10 +11,6 @@
 static const char *TAG = "sx127x";
 
 sx127x device;
-int messages_sent = 0;
-int supported_power_levels[] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 20};
-int supported_power_levels_count = sizeof(supported_power_levels) / sizeof(int);
-int current_power_level = 0;
 
 void tx_callback(sx127x *device) {
   const char message[5] = {'H', 'e', 'l', 'l', 'o'}; // exactly 5 characters, no \0 sent
