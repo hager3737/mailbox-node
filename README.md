@@ -50,7 +50,8 @@ This node is responsible for motion detection in the mailbox and sending the det
 ---
 
 ## Photos  
-
+![Mailbox Node](images/image1.jpg) 
+![Mailbox Node](images/image2.jpg)
 *(Add any photos of your mailbox node setup here.)*
 
 ---
